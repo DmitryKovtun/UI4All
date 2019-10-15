@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="UI4All.UserControls.FileTemplate"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             IsEnabled="{Binding ElementIsEnabled,UpdateSourceTrigger=PropertyChanged}"
+             d:DesignHeight="200" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/UI4All;component/Resources/Icons.xaml"/>
+                <ResourceDictionary Source="/UI4All;component/Resources/Brushes.xaml"/>
+                <ResourceDictionary Source="/UI4All;component/Resources/Shadows.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <UserControl.Style>
+        <Style TargetType="{x:Type UserControl}">
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Opacity" Value="0.5"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Style>
+
+
+    
+
+    <Grid Margin="4"
+          Height="64"
+          Width="192">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Border Grid.RowSpan="2" CornerRadius="3 3 2 2" Background="{StaticResource AccentText}" BorderBrush="LightGray" BorderThickness="0"/>
+            <Border CornerRadius="2 2 0 0" Background="{StaticResource AccentRed}"/>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="64"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock TextWrapping="Wrap" Text="{Binding Name}" Margin="12 0 0 0 " FontSize="14" VerticalAlignment="Center" Foreground="Gray"/>
+
+                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                    <Grid>
+                        <Path Height="28" Width="28" Fill="{StaticResource AccentDarkSteel}" Data="{StaticResource File_Icon}"/>
+                        <Path Effect="{x:Null}" Height="28" Width="28" Fill="{StaticResource AccentDarkSteel}" Data="{StaticResource File_Icon}"/>
+                    </Grid>
+
+                    <TextBlock HorizontalAlignment="Center" Foreground="{StaticResource AccentDarkSteel}" Text="{Binding FileType}" FontSize="12"/>
+                </StackPanel>
+
+            </Grid>
+        </Grid>
+    </Grid>
+
+</UserControl>
+

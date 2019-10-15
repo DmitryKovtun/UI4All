@@ -1,0 +1,131 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/UI4All;component/Resources/Icons.xaml"/>
+        <ResourceDictionary Source="/UI4All;component/Resources/Brushes.xaml"/>
+        <ResourceDictionary Source="/UI4All;component/Resources/Shadows.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    
+    <!-- Slider -->
+    <Style x:Key="HorizontalSliderThumb" TargetType="{x:Type Thumb}">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Foreground" Value="{StaticResource AccentPaleYellowBackground}" />
+        <Setter Property="Background" Value="{StaticResource AccentText}" />
+        <Setter Property="Height" Value="26"/>
+        <Setter Property="Width" Value="26"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Grid Background="Transparent">
+                        <Border CornerRadius="91" Cursor="Hand" Background="White"/>
+                        <Border x:Name="DecoratorBorder" CornerRadius="90" Cursor="Hand"
+                                Background="{TemplateBinding Background}" Effect="{StaticResource ShadowDepth1}"/>
+                        
+                        <Border CornerRadius="90" Cursor="Hand">
+                            <Label Foreground="{TemplateBinding Foreground}" 
+                                   HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                   Content="{Binding RelativeSource={RelativeSource AncestorType=Slider},Path=Value}" 
+                                   FontWeight="Normal" FontSize="12"/>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="{StaticResource AccentSurface}"/>
+
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation From="1" To="0.8" Duration="0:0:0.08" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="DecoratorBorder"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation From="0.8" To="1" Duration="0:0:0.08" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="DecoratorBorder"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+
+
+        </Setter>
+    </Style>
+
+    <Style x:Key="RepeatButtonLeft" TargetType="{x:Type RepeatButton}" BasedOn="{x:Null}">
+        <Setter Property="Background" Value="{StaticResource AccentText}" />
+        <Setter Property="Height" Value="4"/>
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Grid>
+                        <Border x:Name="bg" Background="{TemplateBinding Background}" CornerRadius="2" Effect="{StaticResource ShadowDepth1}"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="RepeatButtonRight" TargetType="{x:Type RepeatButton}" BasedOn="{x:Null}">
+        <Setter Property="Background" Value="{StaticResource AccentText}" />
+        <Setter Property="Height" Value="4"/>
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Grid>
+                        <Border x:Name="bg" Background="{TemplateBinding Background}" CornerRadius="2" Effect="{StaticResource ShadowDepth1}"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type Slider}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Slider}">
+                    <Grid x:Name="GridRoot">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+
+                        <Border Grid.Row="1" Margin="0" x:Name="Border" Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="2"/>
+                        <!--<Canvas Grid.Row="1" VerticalAlignment="Center" Margin="0,0,0,4">
+                            <Rectangle Fill="Green" x:Name="PART_SelectionRange" Height="6" Visibility="Hidden" />
+                        </Canvas>-->
+
+                        <Track Grid.Row="1" x:Name="PART_Track">
+                            <Track.Thumb>
+                                <Thumb x:Name="thumb" Style="{StaticResource HorizontalSliderThumb}"/>
+                            </Track.Thumb>
+                            <Track.IncreaseRepeatButton>
+                                <RepeatButton x:Name="LeftRB" Style="{DynamicResource RepeatButtonRight}" Command="Slider.IncreaseLarge"/>
+                            </Track.IncreaseRepeatButton>
+                            <Track.DecreaseRepeatButton>
+                                <RepeatButton x:Name="RightRB" Style="{DynamicResource RepeatButtonLeft}" Command="Slider.DecreaseLarge"/>
+                            </Track.DecreaseRepeatButton>
+                        </Track>
+
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="BorderThickness" Value="1"/>
+    </Style>
+
+
+</ResourceDictionary>

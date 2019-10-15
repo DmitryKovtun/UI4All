@@ -1,0 +1,70 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+   
+    
+    <SolidColorBrush x:Key="AccentWindow" Color="#293239"/>
+
+    <SolidColorBrush x:Key="AccentPrimary" Color="#455A64"/>
+    <SolidColorBrush x:Key="AccentAttention" Color="#8BC34A"/>
+
+    <SolidColorBrush x:Key="AccentText" Color="#B0BEC5"/>
+    <SolidColorBrush x:Key="AccentLightText" Color="#c5d5de"/>
+
+    <SolidColorBrush x:Key="AccentSurface" Color="#FFFDE7"/>
+
+    <SolidColorBrush x:Key="AccentYellow" Color="#F9AA33"/>
+    <SolidColorBrush x:Key="AccentYellowSelection" Color="#C18428"/>
+
+
+    <!--<SolidColorBrush x:Key="AccentPaleYellowBackground" Color="#AB9C99"/>-->
+    <SolidColorBrush x:Key="AccentPaleYellowBackground" Color="#293239"/>
+
+    <SolidColorBrush x:Key="AccentGrey" Color="#303030"/>
+    <SolidColorBrush x:Key="AccentDarkGrey" Color="#363636"/>
+
+    <SolidColorBrush x:Key="AccentGreenBlue" Color="#15A186"/>
+    <SolidColorBrush x:Key="AccentGreen" Color="#369b62"/>
+    <SolidColorBrush x:Key="AccentOrange" Color="#C66B57"/>
+    <SolidColorBrush x:Key="AccentBlue" Color="#265A7F"/>
+
+    <SolidColorBrush x:Key="AccentLightBlue" Color="#3f88a8"/>
+    <SolidColorBrush x:Key="AccentRed" Color="#a84040"/>
+
+    <SolidColorBrush x:Key="AccentWindowsDarkSteel" Color="#3A464E"/>
+    <SolidColorBrush x:Key="AccentWindowsLightSteel" Color="#607582"/>
+
+    <SolidColorBrush x:Key="AccentDarkSteel" Color="#2A2F35"/>
+
+
+
+
+
+
+
+
+
+
+    <SolidColorBrush x:Key="UICoreWindowTitleForeground" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="UICoreTitleBarButtonForeground" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="UICoreTitleBarButtonForegroundIsPressed" Color="#303030"/>
+
+    <SolidColorBrush x:Key="UICoreTabControlItemAnimationColor" Color="#FFFFFF"/>
+
+    <SolidColorBrush x:Key="UICoreCircleButtonForegroundIsPressed" Color="#303030"/>
+
+    <SolidColorBrush x:Key="UICoreErrorAccent" Color="#E53935"/>
+
+    <SolidColorBrush x:Key="UICoreViolet" Color="#673AB7"/>
+    <SolidColorBrush x:Key="UICoreTeal" Color="#00796B"/>
+    <SolidColorBrush x:Key="UICoreSteel" Color="#546E7A"/>
+    <SolidColorBrush x:Key="UICorePink" Color="#D81B60"/>
+    <SolidColorBrush x:Key="UICoreRed" Color="#E53935"/>
+    <SolidColorBrush x:Key="UICoreOrange" Color="#EF6C00"/>
+    <SolidColorBrush x:Key="UICoreLime" Color="#9E9D24"/>
+    <SolidColorBrush x:Key="UICoreIndigo" Color="#3949AB"/>
+    <SolidColorBrush x:Key="UICoreGreen" Color="#2E7D32"/>
+    <SolidColorBrush x:Key="UICoreCyan" Color="#00838F"/>
+    <SolidColorBrush x:Key="UICoreBrown" Color="#6D4C41"/>
+    <SolidColorBrush x:Key="UICoreBlue" Color="#0277BD"/>
+
+</ResourceDictionary>

@@ -1,0 +1,9 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/UI4All;component/Resources/Brushes.xaml"/>
+        <ResourceDictionary Source="/UI4All;component/Resources/Icons.xaml"/>
+        <ResourceDictionary Source="/UI4All;component/Resources/Shadows.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    
+</ResourceDictionary>

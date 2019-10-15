@@ -1,0 +1,231 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                    xmlns:local="clr-namespace:UI4All"
+                    xmlns:Controls="clr-namespace:UI4All.Controls">
+
+
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/UI4All;component/Resources/Icons.xaml"/>
+        <ResourceDictionary Source="/UI4All;component/Resources/Brushes.xaml"/>
+        <ResourceDictionary Source="/UI4All;component/Resources/Shadows.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+
+
+
+
+
+
+    <Style x:Key="ClearListButtonStyle" TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource AccentOrange}"/>
+        <Setter Property="Foreground" Value="{StaticResource AccentText}"/>
+        <Setter Property="Height" Value="220"/>
+        <Setter Property="Width" Value="32"/>
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="FontWeight" Value="Light"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid Height="{TemplateBinding Height}" Width="{TemplateBinding Width}">
+                        <Border Margin="1" CornerRadius="0 30 30 0" Cursor="Hand" Background="White"/>
+                        <Border x:Name="ElementBorder" CornerRadius="0 30 30 0" Cursor="Hand" Background="{TemplateBinding Background}">
+                            <Grid>
+                                <Path Effect="{StaticResource ShadowDepth1}" Data="{StaticResource delete}" Fill="{StaticResource AccentText}" 
+                                          Height="{TemplateBinding FontSize}" Width="{TemplateBinding FontSize}"/>
+                                <Path Effect="{x:Null}" Data="{StaticResource delete}" Fill="{StaticResource AccentText}" 
+                                          Height="{TemplateBinding FontSize}" Width="{TemplateBinding FontSize}"/>
+                                <ContentPresenter VerticalAlignment="Center" Cursor="Hand" HorizontalAlignment="Center"/>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="{StaticResource AccentDarkGrey}"/>
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation From="220" To="230" Duration="0:0:0.08" Storyboard.TargetProperty="Height"/>
+                                        <DoubleAnimation From="32" To="48" Duration="0:0:0.08" Storyboard.TargetProperty="Width"/>
+
+                                        <DoubleAnimation From="24" To="32" Duration="0:0:0.08" Storyboard.TargetProperty="FontSize"/>
+                                        <DoubleAnimation From="1" To="0.6" Duration="0:0:0.08" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ElementBorder"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation From="230" To="220" Duration="0:0:0.08" Storyboard.TargetProperty="Height"/>
+                                        <DoubleAnimation From="48" To="32" Duration="0:0:0.08" Storyboard.TargetProperty="Width"/>
+
+                                        <DoubleAnimation From="32" To="24" Duration="0:0:0.08" Storyboard.TargetProperty="FontSize"/>
+                                        <DoubleAnimation From="0.6" To="1" Duration="0:0:0.08" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ElementBorder"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="StartButtonStyle" TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource AccentAttention}"/>
+        <Setter Property="Foreground" Value="{StaticResource AccentPrimary}"/>
+        <Setter Property="Height" Value="36"/>
+        <!--<Setter Property="Width" Value="64"/>-->
+        <Setter Property="Margin" Value="2"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontWeight" Value="Light"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid Height="{TemplateBinding Height}" Width="{TemplateBinding Width}">
+                        <Border CornerRadius="2" Cursor="Hand" Background="White"/>
+
+                        <Border x:Name="ElementBorder" CornerRadius="1" Cursor="Hand">
+                            <Grid>
+
+                                <Border x:Name="DecoratorBorder" CornerRadius="1" Background="{TemplateBinding Background}"/>
+
+                                <Controls:ModernProgressRing x:Name="ModernProgressRingAnimation" Style="{StaticResource ChasingDotsProgressRingStyle}" 
+                                                     Foreground="{StaticResource AccentPrimary}" 
+                                                     IsActive="{Binding IsAnimationActive, UpdateSourceTrigger=PropertyChanged}" 
+                                                     Visibility="Hidden" VerticalAlignment="Center"/>
+                                <Label x:Name="StartLabel" Foreground="{TemplateBinding Foreground}"
+                                    HorizontalAlignment="Center" Content="Начать" FontSize="{TemplateBinding FontSize}"/>
+
+
+                                <ContentPresenter x:Name="ButtonContentPresenter" VerticalAlignment="Center" Visibility="Hidden" HorizontalAlignment="Stretch"/>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="{StaticResource AccentDarkGrey}"/>
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation From="1" To="0.7" Duration="0:0:0.08" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="DecoratorBorder"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation From="0.7" To="1" Duration="0:0:0.08" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="DecoratorBorder"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                        <DataTrigger Binding="{Binding IsAnimationActive,UpdateSourceTrigger=PropertyChanged}" Value="True">
+                            <Setter Property="Visibility" Value="Visible" TargetName="ButtonContentPresenter"/>
+                            <Setter Property="Visibility" Value="Hidden" TargetName="StartLabel"/>
+                            <Setter Property="IsEnabled" Value="False"/>
+                            <Setter Property="Cursor" Value="Wait"/>
+                            <!--<Setter Property="Visibility" Value="Visible" TargetName="ModernProgressRingAnimation"/>-->
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <Style x:Key="ToggleButtonInvertStyle" TargetType="{x:Type ToggleButton}">
+        <Setter Property="Background" Value="{StaticResource AccentDarkSteel}"/>
+        <Setter Property="Foreground" Value="{StaticResource AccentText}"/>
+        <Setter Property="FontSize" Value="44"/>
+        <Setter Property="Margin" Value="2"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Grid Height="{TemplateBinding Height}" Width="{TemplateBinding Width}">
+                        <Border x:Name="WhiteBorder" CornerRadius="3" Background="White"/>
+                        <Border x:Name="ElementBorder" CornerRadius="1" Cursor="Hand" Background="{TemplateBinding Background}">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Path Effect="{StaticResource ShadowDepth1}" Data="{StaticResource InvertOrder_None}" Fill="{TemplateBinding Foreground}" 
+                                          Height="18" Width="18" Stretch="Uniform"/>
+                                <Label Content="Обычный" FontSize="16" Foreground="{TemplateBinding Foreground}"/>
+                            </StackPanel>
+                        </Border>
+                        <Border x:Name="ElementBorderInverted" CornerRadius="1" Visibility="Hidden" Cursor="Hand" Background="{TemplateBinding Foreground}">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Path Effect="{StaticResource ShadowDepth1}" Data="{StaticResource InvertOrder_True}" Fill="{TemplateBinding Background}" 
+                                          Height="18" Width="18" Stretch="Uniform"/>
+                                <Label Content="Инверсия" FontSize="16" Foreground="{TemplateBinding Background}"/>
+                            </StackPanel>
+                        </Border>
+                        <ContentPresenter VerticalAlignment="Center" Cursor="Hand" HorizontalAlignment="Center"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Effect" Value="{StaticResource ShadowDepth2}" TargetName="WhiteBorder"/>
+                            <!--<Setter Property="Foreground" Value="{StaticResource AccentText}"/>-->
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation From="1" To="0.8" Duration="0:0:0.08" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ElementBorder"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation From="0.8" To="1" Duration="0:0:0.08" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ElementBorder"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Visibility" Value="Hidden" TargetName="ElementBorder"/>
+                            <Setter Property="Visibility" Value="Visible" TargetName="ElementBorderInverted"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ResourceDictionary>

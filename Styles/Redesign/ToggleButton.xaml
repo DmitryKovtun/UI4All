@@ -1,0 +1,67 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:UI4All.Styles.Misc">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/UI4All;component/Resources/Icons.xaml"/>
+        <ResourceDictionary Source="/UI4All;component/Resources/Brushes.xaml"/>
+        <ResourceDictionary Source="/UI4All;component/Resources/Shadows.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="ToggleButtonImageStyle" TargetType="{x:Type ToggleButton}">
+        <Setter Property="Background" Value="{StaticResource AccentDarkSteel}"/>
+        <Setter Property="Foreground" Value="{StaticResource AccentText}"/>
+        <Setter Property="FontSize" Value="44"/>
+        <Setter Property="Height" Value="32"/>
+        <Setter Property="Width" Value="32"/>
+        <Setter Property="Margin" Value="2"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Grid Height="{TemplateBinding Height}" Width="{TemplateBinding Width}">
+                        <Border x:Name="WhiteBorder" CornerRadius="3" Background="White"/>
+                        <Border x:Name="ElementBorder" CornerRadius="1" Cursor="Hand" Background="{TemplateBinding Background}">
+                            <Grid>
+                                <Path Height="12" Width="12" Data="{StaticResource imageStyle0}" Fill="{TemplateBinding Foreground}"/>
+                                <!--<Label Content="img" FontSize="16" Foreground="{TemplateBinding Foreground}"/>-->
+                            </Grid>
+                        </Border>
+                        <Border x:Name="ElementBorderInverted" CornerRadius="1" Visibility="Hidden" Cursor="Hand" Background="{TemplateBinding Foreground}">
+                            <Grid >
+                                <Path Height="12" Width="12" Data="{StaticResource pageStyle0}" Fill="{TemplateBinding Background}"/>
+                                <!--<Label Content="file" FontSize="16" Foreground="{TemplateBinding Background}"/>-->
+                            </Grid>
+                        </Border>
+                        <ContentPresenter VerticalAlignment="Center" Cursor="Hand" HorizontalAlignment="Center"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Effect" Value="{StaticResource ShadowDepth2}" TargetName="WhiteBorder"/>
+                            <!--<Setter Property="Foreground" Value="{StaticResource AccentText}"/>-->
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation From="1" To="0.8" Duration="0:0:0.08" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ElementBorder"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation From="0.8" To="1" Duration="0:0:0.08" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ElementBorder"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Visibility" Value="Hidden" TargetName="ElementBorder"/>
+                            <Setter Property="Visibility" Value="Visible" TargetName="ElementBorderInverted"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+</ResourceDictionary>
