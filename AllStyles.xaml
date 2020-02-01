@@ -5,8 +5,11 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/UI4All;component/Styles/MiscStyles.xaml"/>
 
+        <ResourceDictionary Source="/UI4All;component/Styles/ListBox/AccountsListBox.xaml"/>
         <ResourceDictionary Source="/UI4All;component/Styles/ListBox/FileListBox.xaml"/>
 
+        <ResourceDictionary Source="/UI4All;component/Styles/CustomStyles/TextBoxSearch.xaml"/>
+        
         <ResourceDictionary Source="/UI4All;component/Styles/Redesign/Slider.xaml"/>
         <ResourceDictionary Source="/UI4All;component/Styles/Redesign/Button.xaml"/>
         <ResourceDictionary Source="/UI4All;component/Styles/Redesign/Label.xaml"/>

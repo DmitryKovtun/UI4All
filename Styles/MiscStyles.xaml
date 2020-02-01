@@ -13,11 +13,6 @@
     </ResourceDictionary.MergedDictionaries>
 
 
-
-
-
-
-
     <Style x:Key="ClearListButtonStyle" TargetType="Button">
         <Setter Property="Background" Value="{StaticResource AccentOrange}"/>
         <Setter Property="Foreground" Value="{StaticResource AccentText}"/>
