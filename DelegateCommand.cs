@@ -4,32 +4,51 @@ using System.Windows.Input;
 
 namespace UI4All
 {
-	class DelegateCommand : ICommand
+	public class DelegateCommand : ICommand
 	{
-		private readonly Action _execute;
+		private readonly Action<object> _execute;
+		private readonly Action _execute_no;
 
 		private readonly Func<bool> _canExecute;
 
 		/// <summary>
-		/// Initializes a new instance of the RelayCommand class that 
-		/// can always execute.
+		/// С ПАРАМЕТРАМИ
 		/// </summary>
-		/// <param name="execute">The execution logic.</param>
-		/// <exception cref="ArgumentNullException">If the execute argument is null.</exception>
-		public DelegateCommand(Action execute) : this(execute, null)
+
+		public DelegateCommand(Action<object> execute) : this(execute, null)
 		{
 
 		}
 
+		public DelegateCommand(Action<object> execute, Func<bool> canExecute)
+		{
+			if(execute == null)
+			{
+				throw new ArgumentNullException("execute");
+			}
+
+			_execute = execute;
+			_canExecute = canExecute;
+		}
+
+
 		/// <summary>
-		/// Initializes a new instance of the RelayCommand class.
+		/// БЕЗ ПАРАМЕТРОВ
 		/// </summary>
-		/// <param name="execute">The execution logic.</param>
-		/// <param name="canExecute">The execution status logic.</param>
-		/// <exception cref="ArgumentNullException">If the execute argument is null.</exception>
+
+		public DelegateCommand(Action execute_no) : this(execute_no, null)
+		{
+
+		}
+
 		public DelegateCommand(Action execute, Func<bool> canExecute)
 		{
-			_execute = execute ?? throw new ArgumentNullException("execute");
+			if(execute == null)
+			{
+				throw new ArgumentNullException("execute");
+			}
+
+			_execute_no = execute;
 			_canExecute = canExecute;
 		}
 
@@ -43,7 +62,11 @@ namespace UI4All
 		/// </summary>
 		public void RaiseCanExecuteChanged()
 		{
-			CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+			var handler = CanExecuteChanged;
+			if(handler != null)
+			{
+				handler(this, EventArgs.Empty);
+			}
 		}
 
 		/// <summary>
@@ -63,11 +86,12 @@ namespace UI4All
 		/// <param name="parameter">This parameter will always be ignored.</param>
 		public void Execute(object parameter)
 		{
-
-
 			if(CanExecute(parameter))
 			{
-				_execute();
+				if(_execute_no == null)
+					_execute(parameter);
+				else
+					_execute_no();
 			}
 		}
 	}
