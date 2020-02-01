@@ -18,6 +18,7 @@
         <ResourceDictionary Source="/UI4All;component/Styles/Redesign/RadioButton.xaml"/>
         <ResourceDictionary Source="/UI4All;component/Styles/Redesign/TextBox.xaml"/>
         <ResourceDictionary Source="/UI4All;component/Styles/Redesign/ToggleButton.xaml"/>
+        <ResourceDictionary Source="/UI4All;component/Styles/TagListStyle.xaml"/>
 
 
     </ResourceDictionary.MergedDictionaries>

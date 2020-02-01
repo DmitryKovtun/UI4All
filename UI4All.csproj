@@ -35,14 +35,13 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Interactivity">
-      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\GitHub\GitHub\System.Windows.Interactivity.dll</HintPath>
+      <HintPath>F:\Программирование\Библиотеки\MaterialDesignInXamlToolkit-master\MainDemo.Wpf\bin\Debug\System.Windows.Interactivity.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
@@ -142,6 +141,10 @@
     <Compile Include="Controls\ModernProgressRing.cs" />
     <Compile Include="NotifyPropertyChanged.cs" />
     <Compile Include="Styles\ListBox\FileDirectoryContentType.cs" />
+    <Page Include="Styles\TagListStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\FileTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
