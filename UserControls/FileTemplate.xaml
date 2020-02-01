@@ -52,11 +52,11 @@
 
                 <StackPanel Grid.Column="1" VerticalAlignment="Center">
                     <Grid>
-                        <Path Height="28" Width="28" Fill="{StaticResource UICoreSteel}" Data="{StaticResource File_Icon}"/>
-                        <Path Effect="{x:Null}" Height="28" Width="28" Fill="{StaticResource UICoreSteel}" Data="{StaticResource File_Icon}"/>
+                        <Path Height="28" Width="28" Fill="{StaticResource AccentDarkSteel}" Data="{StaticResource File_Icon}"/>
+                        <Path Effect="{x:Null}" Height="28" Width="28" Fill="{StaticResource AccentDarkSteel}" Data="{StaticResource File_Icon}"/>
                     </Grid>
 
-                    <TextBlock HorizontalAlignment="Center" Foreground="{StaticResource UICoreSteel}" Text="{Binding FileType}" FontSize="12"/>
+                    <TextBlock HorizontalAlignment="Center" Foreground="{StaticResource AccentDarkSteel}" Text="{Binding FileType}" FontSize="12"/>
                 </StackPanel>
 
             </Grid>

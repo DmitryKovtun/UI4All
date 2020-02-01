@@ -2,8 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
                     xmlns:local="clr-namespace:UI4All.Styles.ListBox"
-                    xmlns:local1="clr-namespace:UI4All.UserControls"
-                    xmlns:templates="clr-namespace:UI4All.UserControls">
+                    xmlns:local1="clr-namespace:UI4All.UserControls">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/UI4All;component/Resources/Icons.xaml"/>
@@ -14,7 +13,7 @@
 
 
     <DataTemplate x:Key="FileTemplate">
-        <templates:FileTemplate/>
+        <local1:FileTemplate/>
     </DataTemplate>
 
 
@@ -47,7 +46,7 @@
 
 
 
-    <Style x:Key="FileListBox" TargetType="{x:Type ListBox}">
+    <Style TargetType="{x:Type ListBox}">
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="ItemContainerStyle" Value="{StaticResource FileListBoxItemStyle}"/>
@@ -95,6 +94,12 @@
             </DataTrigger>
         </Style.Triggers>
     </Style>
+
+
+
+
+
+
 
 
 

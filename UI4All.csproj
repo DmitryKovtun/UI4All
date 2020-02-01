@@ -51,15 +51,6 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DelegateCommand.cs" />
-    <Compile Include="Styles\ListBox\AccountTagContentTypeSelector.cs" />
-    <Compile Include="Styles\ListBox\AccountTagListBox.xaml.cs">
-      <DependentUpon>AccountTagListBox.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Styles\ListBox\DataTemplates\AccountDataTemplate.cs" />
-    <Compile Include="Styles\ListBox\Templates\AccountTemplate.xaml.cs">
-      <DependentUpon>AccountTemplate.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\FileTemplate.xaml.cs">
       <DependentUpon>FileTemplate.xaml</DependentUpon>
     </Compile>
@@ -83,19 +74,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Styles\ListBox\AccountTagListBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Styles\ListBox\AccountsListBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Styles\ListBox\FileListBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Styles\ListBox\Templates\AccountTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -126,10 +105,6 @@
     <Page Include="Styles\Redesign\Slider.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Styles\CustomStyles\TextBoxSearch.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Styles\Redesign\TextBox.xaml">
       <SubType>Designer</SubType>
