@@ -18,12 +18,12 @@
     </DataTemplate>
 
 
-    <Style x:Key="FileListBoxItemStyle" TargetType="{x:Type ListBoxItem}">
+    <Style x:Key="AccountListBoxItemStyle" TargetType="{x:Type ListBoxItem}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                    <Grid x:Name="mainLayer">
-                        <ContentPresenter/>
+                    <Grid x:Name="mainLayer" HorizontalAlignment="Stretch">
+                        <ContentPresenter HorizontalAlignment="Stretch"/>
                         <!--PreviewMouseDown-->
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="MouseLeftButtonDown">
@@ -50,7 +50,7 @@
     <Style x:Key="AccountsListBox" TargetType="{x:Type ListBox}">
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="ItemContainerStyle" Value="{StaticResource FileListBoxItemStyle}"/>
+        <Setter Property="ItemContainerStyle" Value="{StaticResource AccountListBoxItemStyle}"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
@@ -59,11 +59,11 @@
                 <ControlTemplate TargetType="{x:Type ListBox}">
                     <Grid>
                         <Border x:Name="MainBorder"
-                            Effect="{x:Null}"
-                            Background="{TemplateBinding Background}" 
-                            BorderBrush="{TemplateBinding BorderBrush}" 
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                                Effect="{x:Null}"
+                                Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
                             <ScrollViewer Margin="4,4,0,0" x:Name="ContentHost">
                                 <ItemsPresenter/>
                             </ScrollViewer>
@@ -77,9 +77,16 @@
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Horizontal"  IsItemsHost="True"  Width="{Binding Path=ActualWidth, 
-                          RelativeSource={RelativeSource  FindAncestor, AncestorLevel=1, 
-                            AncestorType={x:Type ScrollContentPresenter}}}"/>
+                    <!--<ScrollViewer Margin="4,4,0,0" x:Name="ContentHost">
+                            <ItemsPresenter />
+                        </ScrollViewer>-->
+                    <StackPanel Orientation="Horizontal" 
+                                HorizontalAlignment="Stretch" 
+                                IsItemsHost="True"
+                                Width="{Binding Path=ActualWidth, 
+                                        RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, 
+                                                        AncestorType={x:Type ScrollContentPresenter}}}"/>
+
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>

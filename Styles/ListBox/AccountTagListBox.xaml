@@ -9,12 +9,15 @@
              d:DesignHeight="450" d:DesignWidth="800">
 
     <UserControl.Resources>
-        <DataTemplate x:Key="AccountTemplate">
-            <templates:AccountTemplate/>
-        </DataTemplate>
-
+        <ResourceDictionary>
+            <DataTemplate x:Key="AccountTemplate">
+                <templates:AccountTemplate/>
+            </DataTemplate>
+            
+        </ResourceDictionary>
     </UserControl.Resources>
-    <Grid >
+    
+    <Grid>
         <ListBox x:Name="Main" Background="Transparent" BorderThickness="0">
             <ListBox.ItemTemplateSelector>
                 <local:AccountTagContentTypeSelector AccountContentType="{StaticResource AccountTemplate}"/>
