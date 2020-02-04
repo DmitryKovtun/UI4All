@@ -17,15 +17,27 @@
 
 
     <!--NEW !!!-->
-    <SolidColorBrush x:Key="Accent_Foreground" Color="#FFFDE7"/>
+    <SolidColorBrush x:Key="Accent_Foreground" Color="#2A2F35"/>
 
-    <SolidColorBrush x:Key="Accent_Surface" Color="#FFFDE7"/>
+    <SolidColorBrush x:Key="Accent_Surface" Color="Transparent"/>
 
-    <SolidColorBrush x:Key="Accent_Grey" Color="#95a5a6"/>
+    <SolidColorBrush x:Key="Accent_Tag_Surface" Color="#B0BEC5"/>
+    <SolidColorBrush x:Key="Accent_Tag_Text_Watermark" Color="#303030"/>
+    <SolidColorBrush x:Key="Accent_Tag_Text" Color="#2A2F35"/>
+    <SolidColorBrush x:Key="Accent_Tag_Button" Color="#B0BEC5"/>
+
+
+    <SolidColorBrush x:Key="Accent_List_Buttons" Color="White"/>
+
+
+    <SolidColorBrush x:Key="Accent_Grey" Color="#B0BEC5"/>
+    <SolidColorBrush x:Key="Accent_Text" Color="#B0BEC5"/>
     <SolidColorBrush x:Key="Accent_Red" Color="#e74c3c"/>
-    <SolidColorBrush x:Key="Accent_Violet" Color="#9b59b6"/>
+    <SolidColorBrush x:Key="Accent_Violet" Color="#B0BEC5"/>
     
 
+    
+    
 
     <!--<SolidColorBrush x:Key="AccentPaleYellowBackground" Color="#AB9C99"/>-->
     <SolidColorBrush x:Key="AccentPaleYellowBackground" Color="#293239"/>
