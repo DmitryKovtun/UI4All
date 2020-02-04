@@ -9,6 +9,107 @@
         <ResourceDictionary Source="/UI4All;component/Resources/Shadows.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
+
+
+    <Style x:Key="TempButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Foreground" Value="{StaticResource AccentText}"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Height" Value="32" />
+        <Setter Property="Width" Value="32" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid Height="{TemplateBinding Height}" Width="{TemplateBinding Width}">
+                        <!--<Border x:Name="DecoratorBorder" CornerRadius="2" Background="{StaticResource Accent_List_Buttons}"/>-->
+                        <!--<Border CornerRadius="2" Background="{TemplateBinding Background}"/>-->
+                        <Border x:Name="ElementBorder" Background="{TemplateBinding Background}" CornerRadius="1">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Foreground" Value="{StaticResource Accent_Violet}"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <!--<Setter Property="Foreground" Value="{StaticResource AccentText}"/>-->
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation From="1" To="0.1" Duration="0:0:0.08" 
+                                                            Storyboard.TargetProperty="Opacity" 
+                                                            Storyboard.TargetName="ElementBorder"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation From="0.1" To="1" Duration="0:0:0.08" 
+                                                            Storyboard.TargetProperty="Opacity" 
+                                                            Storyboard.TargetName="ElementBorder"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+
+    
+    
+
+    <Style x:Key="EditTextBox" TargetType="{x:Type TextBox}">
+        <Setter Property="Foreground" Value="{StaticResource Accent_Text}"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="SelectionBrush" Value="{StaticResource Accent_Violet}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Grid x:Name="LayoutGrid">
+                        <Border CornerRadius="2" Background="{StaticResource Accent_Surface}"/>
+                        <ScrollViewer x:Name="PART_ContentHost" 
+                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                      Margin="4 0 4 0" />
+                    <Label x:Name="WaterMark"
+                           Margin="2"
+                           Grid.Column="0"
+                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                           HorizontalAlignment="Left"
+                           Foreground="DarkGray"
+                           Content="Content..."
+                           Padding="5 0 5 0"
+                           FontWeight="Light"             
+                           FontFamily="Segoe UI"
+                           Visibility="Hidden"
+                           FontSize="16"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Text" Value="">
+                            <Setter TargetName="WaterMark"  
+                                    Property="Visibility" 
+                                    Value="Visible"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
     <Style x:Key="ExtendedList_ItemStyle" TargetType="{x:Type ListBoxItem}">
         <Setter Property="Height" Value="42"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>
@@ -16,216 +117,119 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
                     <Grid Height="{TemplateBinding Height}" Background="Transparent">
-                        <Border BorderThickness="0 0 0 1">
-                            <Border.BorderBrush>
-                                <RadialGradientBrush RadiusX="1.2" RadiusY="1" GradientOrigin="0.5,0.5">
-                                    <GradientStop Color="Black" Offset="0" />
-                                    <GradientStop Color="Transparent" Offset="1" />
-                                </RadialGradientBrush>
-                            </Border.BorderBrush>
-                        </Border>
+                        <Border BorderThickness="0 0 0 1"
+                                Opacity="0.3"
+                                BorderBrush="{StaticResource Accent_Text}"/>
 
                         <Grid VerticalAlignment="Center" Margin="10 0 0 0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition  Width="Auto"/>
-                                <ColumnDefinition  Width="*" />
-                                <ColumnDefinition  Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
 
 
                             <Grid Background="Transparent">
-                                <Label Foreground="Black" Content="{Binding Name}" FontSize="14" FontWeight="Bold" VerticalAlignment="Center"/>
+                                <Label Foreground="{StaticResource Accent_Text}" 
+                                       Content="{Binding Name}" 
+                                       FontSize="14" 
+                                       FontWeight="Bold"
+                                       VerticalAlignment="Center"/>
                             </Grid>
 
-                            <Line x:Name="Decorator" 
-                                  Grid.Column="1"  
-                                  Width="1" 
-                                  Y1="0"
-                                  X1="0" 
-                                  Y2="28" 
-                                  X2="0" 
-                                  VerticalAlignment="Center" 
-                                  Margin="4 0 0 4">
-                                <Line.Stroke>
-                                    <RadialGradientBrush RadiusX="1" RadiusY="1" GradientOrigin="0.5,0.5">
-                                        <GradientStop Color="Black" Offset="0" />
-                                        <GradientStop Color="Transparent" Offset="1" />
-                                    </RadialGradientBrush>
-                                </Line.Stroke>
-                            </Line>
-                            <TextBox Grid.Column="2" Text="{Binding Content}">
-                                <TextBox.Style>
-                                    <Style TargetType="{x:Type TextBox}">
-                                        <Setter Property="Foreground" Value="Black"/>
-                                        <Setter Property="FontFamily" Value="Segoe UI"/>
-                                        <Setter Property="FontSize" Value="14"/>
-                                        <Setter Property="VerticalContentAlignment" Value="Center"/>
-                                        <Setter Property="SnapsToDevicePixels" Value="True" />
-                                        <Setter Property="SelectionBrush" Value="{StaticResource Accent_Violet}"/>
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="{x:Type TextBox}">
-                                                    <Grid x:Name="LayoutGrid">
-                                                        <Border CornerRadius="2" Background="{StaticResource Accent_Surface}"/>
-                                                        <ScrollViewer x:Name="PART_ContentHost" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Margin="4,0,4,0" />
-
-                                                        <Label x:Name="WaterMark"
-                                                               Margin="2"
-                                                               Grid.Column="0"
-                                                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                               HorizontalAlignment="Left"
-                                                               Foreground="DarkGray"
-                                                               Content="Content..."
-                                                               Padding="5,0,5,0"
-                                                               FontWeight="Light"             
-                                                               FontFamily="Segoe UI"
-                                                               Visibility="Hidden"
-                                                               FontSize="16"/>
-                                                    </Grid>
-                                                    <ControlTemplate.Triggers>
-                                                        <Trigger Property="Text" Value="">
-                                                            <Setter TargetName="WaterMark"  Property="Visibility" Value="Visible"/>
-                                                        </Trigger>
-                                                    </ControlTemplate.Triggers>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </TextBox.Style>
-                            </TextBox>
-
+                            <Border Grid.Column="1"  
+                                    Width="1" 
+                                    Height="28"
+                                    Margin="4 0 0 4"
+                                    VerticalAlignment="Center"
+                                    Opacity="0.3"
+                                    Background="{StaticResource Accent_Text}"/>
+                            <TextBox Grid.Column="2" 
+                                     Text="{Binding Content}" 
+                                     Style="{StaticResource EditTextBox}"/>
                             <StackPanel Orientation="Horizontal" Grid.Column="3">
-                                <Button x:Name="GeneratePassword_Button" Height="32" Width="32" Cursor="Hand" Margin="10 0 10 0" 
-                                    Command="{Binding DataContext.GeneratePassword_Command, RelativeSource={RelativeSource AncestorType=ListBox}}"   
-                                    CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=DataContext}" >
-                                    <Button.Style>
-                                        <Style TargetType="Button">
-                                            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-                                            <Setter Property="Background" Value="{StaticResource Accent_Surface}"/>
-                                            <Setter Property="Foreground" Value="Gray"/>
-                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
-                                            <Setter Property="VerticalContentAlignment" Value="Center" />
-                                            <Setter Property="Visibility" Value="Hidden"/>
-                                            <Setter Property="Template">
-                                                <Setter.Value>
-                                                    <ControlTemplate TargetType="Button">
-                                                        <Grid>
-                                                            <Border CornerRadius="2" Background="{TemplateBinding Background}"/>
-                                                            <Path Data="{StaticResource Key_Icon}" 
-                                                              Fill="{TemplateBinding Foreground}"
-                                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                              Stretch="Uniform" 
-                                                              Height="18" 
-                                                              Width="18"/>
-                                                        </Grid>
-                                                        <ControlTemplate.Triggers>
-                                                            <Trigger Property="IsPressed" Value="True">
-                                                                <Setter Property="Foreground" Value="{StaticResource Accent_Violet}"/>
-                                                            </Trigger>
-                                                            <!--<Trigger Property="IsMouseOver" Value="True">
-
-                                                        </Trigger>-->
-                                                        </ControlTemplate.Triggers>
-                                                    </ControlTemplate>
-                                                </Setter.Value>
-                                            </Setter>
-                                        </Style>
-                                    </Button.Style>
+                                <Button x:Name="GeneratePassword_Button" 
+                                        Opacity="0"
+                                        Margin="10 0 10 0" 
+                                        Command="{Binding DataContext.GeneratePasswordCommand, 
+                                                    RelativeSource={RelativeSource AncestorType=ListBox}}"   
+                                        CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=DataContext}" 
+                                        Style="{StaticResource TempButtonStyle}">
+                                    <Path Data="{StaticResource Key_Icon}" 
+                                          Fill="{StaticResource AccentText}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          Stretch="Uniform" 
+                                          Height="18" 
+                                          Width="18"/>
                                 </Button>
-                                <Button x:Name="Copy_Button" Height="32" Width="32" Cursor="Hand"  
-                                    Command="{Binding DataContext.CopyItem_Command, RelativeSource={RelativeSource AncestorType=ListBox}}"   
-                                    CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=DataContext}" >
-                                    <Button.Style>
-                                        <Style TargetType="Button">
-                                            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-                                            <Setter Property="Foreground" Value="Gray"/>
-                                            <Setter Property="Background" Value="{StaticResource Accent_Surface}"/>
-                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
-                                            <Setter Property="VerticalContentAlignment" Value="Center" />
-                                            <Setter Property="Visibility" Value="Hidden"/>
-                                            <Setter Property="Template">
-                                                <Setter.Value>
-                                                    <ControlTemplate TargetType="Button">
-                                                        <Grid>
-                                                            <Border CornerRadius="2" Background="{TemplateBinding Background}"/>
-                                                            <Path Data="{StaticResource Copy_Icon}" 
-                                                              Fill="{TemplateBinding Foreground}"
-                                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                              Stretch="Uniform" 
-                                                              Height="18" 
-                                                              Width="18"/>
-                                                        </Grid>
-                                                        <ControlTemplate.Triggers>
-                                                            <Trigger Property="IsPressed" Value="True">
-                                                                <Setter Property="Foreground" Value="{StaticResource Accent_Violet}"/>
-                                                            </Trigger>
-                                                            <!--<Trigger Property="IsMouseOver" Value="True">
 
-                                                        </Trigger>-->
-                                                        </ControlTemplate.Triggers>
-                                                    </ControlTemplate>
-                                                </Setter.Value>
-                                            </Setter>
-                                        </Style>
-                                    </Button.Style>
+                                <Button x:Name="Copy_Button"
+                                        Opacity="0"
+                                        Command="{Binding DataContext.CopyItem_Command, 
+                                                    RelativeSource={RelativeSource AncestorType=ListBox}}"   
+                                        CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=DataContext}" 
+                                        Style="{StaticResource TempButtonStyle}">
+                                    <Path Data="{StaticResource Copy_Icon}" 
+                                          Fill="{StaticResource AccentText}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          Stretch="Uniform" 
+                                          Height="18" 
+                                          Width="18"/>
                                 </Button>
-                                <Button x:Name="Delete_Button" Grid.Column="3" Margin="10 0 10 0" Height="32" Width="32" Cursor="Hand"  
-                                    Command="{Binding DataContext.DeleteItem_Command, RelativeSource={RelativeSource AncestorType=ListBox}}"   
-                                    CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=DataContext}" >
-                                    <Button.Style>
-                                        <Style TargetType="Button">
-                                            <Setter Property="Foreground" Value="Gray"/>
-                                            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-                                            <Setter Property="Background" Value="{StaticResource Accent_Surface}"/>
-                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
-                                            <Setter Property="VerticalContentAlignment" Value="Center" />
-                                            <Setter Property="Template">
-                                                <Setter.Value>
-                                                    <ControlTemplate TargetType="Button">
-                                                        <Grid>
-                                                            <Border CornerRadius="2" Background="{TemplateBinding Background}"/>
-                                                            <Path Data="{StaticResource Delete_Icon}" 
-                                                              Stroke="{TemplateBinding Foreground}"
-                                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                              Stretch="UniformToFill" 
-                                                              Height="14" 
-                                                              Width="14"/>
-                                                        </Grid>
-                                                        <ControlTemplate.Triggers>
-                                                            <Trigger Property="IsPressed" Value="True">
-                                                                <Setter Property="Foreground" Value="{StaticResource Accent_Violet}"/>
-                                                            </Trigger>
-
-                                                            <!--<Trigger Property="IsMouseOver" Value="True">
-                                                               
-                                                            </Trigger>-->
-                                                        </ControlTemplate.Triggers>
-                                                    </ControlTemplate>
-                                                </Setter.Value>
-                                            </Setter>
-                                        </Style>
-                                    </Button.Style>
+                                <Button x:Name="Delete_Button" 
+                                        Grid.Column="3"
+                                        Margin="10 0 10 0"
+                                        Command="{Binding DataContext.DeleteItem_Command, 
+                                                RelativeSource={RelativeSource AncestorType=ListBox}}"   
+                                        CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=DataContext}" 
+                                        Style="{StaticResource TempButtonStyle}">
+                                    <Path Data="{StaticResource Delete_Icon}" 
+                                          Stroke="{StaticResource AccentText}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          Stretch="UniformToFill" 
+                                          Height="14" 
+                                          Width="14"/>
                                 </Button>
                             </StackPanel>
                         </Grid>
-
                     </Grid>
 
                     <ControlTemplate.Triggers>
-
                         <!--<Trigger Property="IsSelected" Value="True">
                             
                         </Trigger>-->
-
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Visibility" TargetName="Copy_Button" Value="Visible"/>
-                            <Setter Property="Visibility" TargetName="GeneratePassword_Button" Value="Visible"/>
-                        </Trigger>
+                            <!--<Setter Property="Foreground" Value="{StaticResource AccentText}"/>-->
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation From="0" To="1" Duration="0:0:0.04" 
+                                                            Storyboard.TargetProperty="Opacity" 
+                                                            Storyboard.TargetName="Copy_Button"/>
+                                        <DoubleAnimation From="0" To="1" Duration="0:0:0.04" 
+                                                            Storyboard.TargetProperty="Opacity" 
+                                                            Storyboard.TargetName="GeneratePassword_Button"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation From="1" To="0" Duration="0:0:0.04" 
+                                                            Storyboard.TargetProperty="Opacity" 
+                                                            Storyboard.TargetName="Copy_Button"/>
+                                        <DoubleAnimation From="1" To="0" Duration="0:0:0.04" 
+                                                            Storyboard.TargetProperty="Opacity" 
+                                                            Storyboard.TargetName="GeneratePassword_Button"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
 
+                        </Trigger>
                     </ControlTemplate.Triggers>
 
                 </ControlTemplate>
@@ -243,8 +247,13 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBox}">
-                    <Border CornerRadius="20" x:Name="Border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                        <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Auto" Margin="0,4,0,4">
+                    <Border CornerRadius="20" x:Name="Border" 
+                            Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                      CanContentScroll="False"
+                                      Margin="0 4 0 4">
                             <ItemsPresenter/>
                         </ScrollViewer>
                     </Border>
