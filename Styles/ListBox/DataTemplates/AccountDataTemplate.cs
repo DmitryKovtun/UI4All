@@ -1,21 +1,10 @@
-﻿using System.ComponentModel;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
 
 namespace UI4All.Styles.ListBox.DataTemplates
 {
-	public class AccountDataTemplate
+	public class AccountDataTemplate : NotifyPropertyChanged
 	{
-		#region PropertyChanged
-
-		public event PropertyChangedEventHandler PropertyChanged;
-
-		protected virtual void OnPropertyChanged(string propertyName)
-		{
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-		}
-
-		#endregion
 
 		#region fields
 		//public static FileSelectionWindow mwvm = null;
@@ -102,9 +91,27 @@ namespace UI4All.Styles.ListBox.DataTemplates
 					_ItemCLickCommand = new DelegateCommand(delegate ()
 					{
 
-						MessageBox.Show("Test");
+						MessageBox.Show("ItemCLickCommand");
 					});
 				return _ItemCLickCommand;
+			}
+		}
+
+
+		private ICommand _OpenBackupItemWindowCommand;
+
+		public virtual ICommand OpenBackupItemWindowCommand
+		{
+			get
+			{
+				if(_OpenBackupItemWindowCommand == null)
+					_OpenBackupItemWindowCommand = new DelegateCommand(delegate ()
+					{
+
+
+						MessageBox.Show("OpenBackupItemWindowCommand");
+					});
+				return _OpenBackupItemWindowCommand;
 			}
 		}
 
@@ -118,13 +125,14 @@ namespace UI4All.Styles.ListBox.DataTemplates
 				if(_GetInfoAboutItemCommand == null)
 					_GetInfoAboutItemCommand = new DelegateCommand(delegate ()
 					{
-
+						MessageBox.Show("GetInfoAboutItemCommand");
 
 
 					});
 				return _GetInfoAboutItemCommand;
 			}
 		}
+
 
 
 		private ICommand _RemoveItemCommand;
