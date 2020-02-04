@@ -36,14 +36,18 @@
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <DoubleAnimation From="1" To="0.8" Duration="0:0:0.08" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="DecoratorBorder"/>
+                                        <DoubleAnimation From="1" To="0.8" Duration="0:0:0.08" 
+                                                         Storyboard.TargetProperty="Opacity" 
+                                                         Storyboard.TargetName="DecoratorBorder"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.EnterActions>
                             <Trigger.ExitActions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <DoubleAnimation From="0.8" To="1" Duration="0:0:0.08" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="DecoratorBorder"/>
+                                        <DoubleAnimation From="0.8" To="1" Duration="0:0:0.08" 
+                                                         Storyboard.TargetProperty="Opacity" 
+                                                         Storyboard.TargetName="DecoratorBorder"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.ExitActions>
