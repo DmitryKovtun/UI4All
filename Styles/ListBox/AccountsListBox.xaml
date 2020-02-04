@@ -12,32 +12,96 @@
     </ResourceDictionary.MergedDictionaries>
 
 
-
     <DataTemplate x:Key="AccountTemplate">
         <templates:AccountTemplate/>
     </DataTemplate>
 
 
-    <Style x:Key="AccountListBoxItemStyle" TargetType="{x:Type ListBoxItem}">
+    <Style x:Key="AddAccountButtonStyle" TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource AccentDarkSteel}"/>
+        <Setter Property="Foreground" Value="{StaticResource AccentText}"/>
+        <Setter Property="Height" Value="48"/>
+        <Setter Property="Width" Value="48"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="FontWeight" Value="Light"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                    <Grid x:Name="mainLayer" HorizontalAlignment="Stretch">
-                        <ContentPresenter HorizontalAlignment="Stretch"/>
-                        <!--PreviewMouseDown-->
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="MouseLeftButtonDown">
-                                <i:InvokeCommandAction Command="{Binding ItemCLickCommand}"/>
-                            </i:EventTrigger>
-                            <i:EventTrigger EventName="MouseRightButtonDown">
-                                <i:InvokeCommandAction Command="{Binding GetInfoAboutItemCommand}"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
+                <ControlTemplate TargetType="Button">
+                    <Grid Height="{TemplateBinding Height}" 
+                          Width="{TemplateBinding Width}">
+                        <Border x:Name="WhiteBorder"
+                                Margin="1 1 0 0" 
+                                CornerRadius="91 0 0 0" 
+                                Background="White"/>
+                        <Border x:Name="ElementBorder" 
+                                CornerRadius="90 0 0 0" 
+                                Cursor="Hand" 
+                                Background="{TemplateBinding Background}">
+                            <Grid>
+                                <Path Effect="{StaticResource ShadowDepth1}" 
+                                      Data="{StaticResource Add_Icon}" 
+                                      Fill="{StaticResource AccentText}" 
+                                      Height="{TemplateBinding FontSize}" 
+                                      Width="{TemplateBinding FontSize}"
+                                      Margin="10 10 0 0"/>
+
+                                <Path Effect="{x:Null}" 
+                                      Data="{StaticResource Add_Icon}" 
+                                      Fill="{StaticResource AccentText}" 
+                                      Height="{TemplateBinding FontSize}" 
+                                      Width="{TemplateBinding FontSize}"
+                                      Margin="10 10 0 0"/>
+                                <ContentPresenter VerticalAlignment="Center" 
+                                                  Cursor="Hand" 
+                                                  
+                                                  HorizontalAlignment="Center"/>
+                            </Grid>
+                        </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True" >
+                        <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Foreground" Value="{StaticResource AccentDarkGrey}"/>
-                            <Setter Property="Background" Value="#DCE5EA" TargetName="mainLayer"/>
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation From="48" To="64" 
+                                                         Duration="0:0:0.08" 
+                                                         Storyboard.TargetProperty="Height"/>
+                                        <DoubleAnimation From="48" To="64" 
+                                                         Duration="0:0:0.08" 
+                                                         Storyboard.TargetProperty="Width"/>
+
+                                        <DoubleAnimation From="18" To="24" 
+                                                         Duration="0:0:0.08" 
+                                                         Storyboard.TargetProperty="FontSize"/>
+                                        <DoubleAnimation From="1" To="0.6" 
+                                                         Duration="0:0:0.08" 
+                                                         Storyboard.TargetProperty="Opacity" 
+                                                         Storyboard.TargetName="ElementBorder"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation From="64" To="48" 
+                                                         Duration="0:0:0.08" 
+                                                         Storyboard.TargetProperty="Height"/>
+                                        <DoubleAnimation From="64" To="48" 
+                                                         Duration="0:0:0.08" 
+                                                         Storyboard.TargetProperty="Width"/>
+                                        
+                                        <DoubleAnimation From="24" To="18" 
+                                                         Duration="0:0:0.08" 
+                                                         Storyboard.TargetProperty="FontSize"/>
+                                        <DoubleAnimation From="0.6" To="1" 
+                                                         Duration="0:0:0.08" 
+                                                         Storyboard.TargetProperty="Opacity" 
+                                                         Storyboard.TargetName="ElementBorder"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -46,8 +110,42 @@
     </Style>
 
 
+    <Style x:Key="AccountListBoxItemStyle" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                    <Grid x:Name="mainLayer" HorizontalAlignment="Stretch">
+                        <Border SnapsToDevicePixels="true">
+                            <ContentPresenter HorizontalAlignment="Stretch"/>
+                        </Border>
+                        
+                        <!--PreviewMouseDown-->
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseLeftButtonDown">
+                                <i:InvokeCommandAction Command="{Binding ItemCLickCommand}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="MouseRightButtonDown">
+                                <i:InvokeCommandAction Command="{Binding GetInfoAboutItemCommand}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="MouseDoubleClick">
+                                <i:InvokeCommandAction Command="{Binding OpenBackupItemWindowCommand}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Grid>
+                    <!--<ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True" >
+                            <Setter Property="Foreground" Value="{StaticResource AccentDarkGrey}"/>
+                            <Setter Property="Background" Value="#DCE5EA" TargetName="mainLayer"/>
+                            <Setter Property="Opacity" Value="0.6" TargetName="Presenter"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>-->
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
-    <Style x:Key="AccountsListBox" TargetType="{x:Type ListBox}">
+
+    <Style x:Key="AccountsListBoxStyle" TargetType="{x:Type ListBox}">
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="ItemContainerStyle" Value="{StaticResource AccountListBoxItemStyle}"/>
@@ -64,12 +162,14 @@
                                 BorderBrush="{TemplateBinding BorderBrush}" 
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
-                            <ScrollViewer Margin="4,4,0,0" x:Name="ContentHost">
+                            <!--<Border  Name="Border" Padding="2" SnapsToDevicePixels="true">
+                                <ContentPresenter HorizontalAlignment="Stretch"/>
+                            </Border>-->
+
+                            <ScrollViewer Margin="4,4,0,0" x:Name="ContentHost" CanContentScroll="False">
                                 <ItemsPresenter/>
                             </ScrollViewer>
                         </Border>
-                        <Button x:Name="ClearListButton" Style="{StaticResource ClearListButtonStyle}" 
-                            Command="{Binding ClearListCommand}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -80,7 +180,7 @@
                     <!--<ScrollViewer Margin="4,4,0,0" x:Name="ContentHost">
                             <ItemsPresenter />
                         </ScrollViewer>-->
-                    <StackPanel Orientation="Horizontal" 
+                    <StackPanel Orientation="Vertical" 
                                 HorizontalAlignment="Stretch" 
                                 IsItemsHost="True"
                                 Width="{Binding Path=ActualWidth, 
