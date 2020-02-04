@@ -52,12 +52,15 @@
   <ItemGroup>
     <Compile Include="DelegateCommand.cs" />
     <Compile Include="Styles\ListBox\AccountTagContentTypeSelector.cs" />
-    <Compile Include="Styles\ListBox\AccountTagListBox.xaml.cs">
-      <DependentUpon>AccountTagListBox.xaml</DependentUpon>
+    <Compile Include="Styles\ListBox\AccountListBoxControl.xaml.cs">
+      <DependentUpon>AccountListBoxControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Styles\ListBox\DataTemplates\AccountDataTemplate.cs" />
     <Compile Include="Styles\ListBox\Templates\AccountTemplate.xaml.cs">
       <DependentUpon>AccountTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\EditBoxUserControl.xaml.cs">
+      <DependentUpon>EditBoxUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\FileTemplate.xaml.cs">
       <DependentUpon>FileTemplate.xaml</DependentUpon>
@@ -82,7 +85,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Styles\ListBox\AccountTagListBox.xaml">
+    <Page Include="Styles\ListBox\AccountListBoxControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -122,6 +125,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Styles\Redesign\ScrollBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\Redesign\Slider.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -142,6 +149,10 @@
     <Compile Include="NotifyPropertyChanged.cs" />
     <Compile Include="Styles\ListBox\FileDirectoryContentType.cs" />
     <Page Include="Styles\TagListStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\EditBoxUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
