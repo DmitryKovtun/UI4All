@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="UI4All.Styles.ListBox.AccountTagListBox"
+﻿<UserControl x:Class="UI4All.Styles.ListBox.AccountListBoxControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -13,12 +13,19 @@
             <DataTemplate x:Key="AccountTemplate">
                 <templates:AccountTemplate/>
             </DataTemplate>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/UI4All;component/Styles/ListBox/AccountsListBox.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
             
         </ResourceDictionary>
     </UserControl.Resources>
     
     <Grid>
-        <ListBox x:Name="Main" Background="Transparent" BorderThickness="0">
+        <ListBox x:Name="Main" Background="Transparent" 
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                 BorderThickness="0"
+                 Style="{StaticResource AccountsListBoxStyle}"
+                 ItemsSource="{Binding AccountsList}">
             <ListBox.ItemTemplateSelector>
                 <local:AccountTagContentTypeSelector AccountContentType="{StaticResource AccountTemplate}"/>
             </ListBox.ItemTemplateSelector>
