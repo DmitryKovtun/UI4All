@@ -16,6 +16,17 @@
     <SolidColorBrush x:Key="AccentYellowSelection" Color="#C18428"/>
 
 
+    <!--NEW !!!-->
+    <SolidColorBrush x:Key="Accent_Foreground" Color="#FFFDE7"/>
+
+    <SolidColorBrush x:Key="Accent_Surface" Color="#FFFDE7"/>
+
+    <SolidColorBrush x:Key="Accent_Grey" Color="#95a5a6"/>
+    <SolidColorBrush x:Key="Accent_Red" Color="#e74c3c"/>
+    <SolidColorBrush x:Key="Accent_Violet" Color="#9b59b6"/>
+    
+
+
     <!--<SolidColorBrush x:Key="AccentPaleYellowBackground" Color="#AB9C99"/>-->
     <SolidColorBrush x:Key="AccentPaleYellowBackground" Color="#293239"/>
 

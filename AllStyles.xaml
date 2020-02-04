@@ -23,6 +23,8 @@
 
         <ResourceDictionary Source="/UI4All;component/Styles/TagListStyle.xaml"/>
 
+        <ResourceDictionary Source="/UI4All;component/Styles/ExtendedListBox.xaml"/>
+
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>
