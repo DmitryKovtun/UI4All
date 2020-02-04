@@ -1,0 +1,66 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <SolidColorBrush x:Key="AccentSecondary" Color="#34495e" />
+    <SolidColorBrush x:Key="AccentText" Color="#B0BEC5"/>
+
+    <!--ScrollBarThumbStyle-->
+
+    <Style x:Key="ScrollBarThumbStyle" TargetType="{x:Type Thumb}">
+        <Setter Property="IsTabStop" Value="False"/>
+        <Setter Property="Background" Value="{DynamicResource AccentText}"/>
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="Margin" Value="0,4,0,4"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="2"/>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsDragging" Value="True">
+                            <Setter Property="Opacity" Value="0.4"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Opacity" Value="0.6"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--CustomUniversalScrollBar-->
+
+    <ControlTemplate x:Key="CustomUniversalScrollBar" TargetType="{x:Type ScrollBar}">
+        <Grid  x:Name="GridScrollBar">
+            <Track Name="PART_Track"
+                   Width="6"
+                   HorizontalAlignment="Left"
+                   IsDirectionReversed="True">
+                <Track.Thumb>
+                    <Thumb Width="6" Style="{StaticResource ScrollBarThumbStyle}"/>
+
+                </Track.Thumb>
+            </Track>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="Orientation" Value="Horizontal">
+                <Setter Property="LayoutTransform" TargetName="GridScrollBar">
+                    <Setter.Value>
+                        <RotateTransform Angle="-90"/>
+                    </Setter.Value>
+                </Setter>
+                <Setter TargetName="PART_Track" Property="Orientation" Value="Vertical"/>
+                <Setter TargetName="PART_Track" Property="Margin" Value="4"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <!--CustomUniversalScrollBar-->
+
+    <Style TargetType="{x:Type ScrollBar}">
+        <Setter Property="Template" Value="{StaticResource CustomUniversalScrollBar}"/>
+    </Style>
+
+
+</ResourceDictionary>
