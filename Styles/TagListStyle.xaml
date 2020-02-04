@@ -85,6 +85,36 @@
         </Setter>
     </Style>
 
+    <Style x:Key="AddTagButtton_ButtonStyle" TargetType="Button">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Border CornerRadius="0 4 4 0" Background="{TemplateBinding Background}"/>
+                        <Path Data="{StaticResource Add_Icon}" 
+                                  Fill="{StaticResource Accent_Foreground}"
+                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                  Stretch="UniformToFill" 
+                                  Height="14" 
+                                  Width="14"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <!--<Trigger Property="IsPressed" Value="True">
+
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+
+                        </Trigger>-->
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="TagsList_ItemStyle" TargetType="{x:Type ListBoxItem}">
         <Setter Property="Margin" Value="0 0 10 10"/>
         <Setter Property="FontSize" Value="16"/>
@@ -94,7 +124,33 @@
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
 
                     <Grid Height="32" MinWidth="64" HorizontalAlignment="Left">
-                        <Grid>
+
+
+                        <Grid x:Name="AddMode" Visibility="Hidden">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Border CornerRadius="4" Grid.ColumnSpan="2" Background="{StaticResource Accent_Surface}" Effect="{StaticResource ShadowDepth2}"/>
+
+                            <Grid>
+                                <TextBox Style="{StaticResource EditTextBoxTagsList_TextBoxStyle}" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            </Grid>
+
+                            <Grid Grid.Column="1">
+                                <Button x:Name="AddTagButton" 
+                                        Background="Green"
+                                        Cursor="Hand"
+                                        Style="{StaticResource AddTagButtton_ButtonStyle}"
+                                        Command="{Binding DataContext.AddTag_Command, RelativeSource={RelativeSource AncestorType=ListBox}}"   
+                                        CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=DataContext}" 
+                                        Width="32"/>
+
+                            </Grid>
+
+                        </Grid>
+
+                        <Grid x:Name="EditMode">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
@@ -110,6 +166,7 @@
 
                                 <Grid x:Name="Delete_Mode" Width="32" Opacity="0">
                                     <Button x:Name="DeleteButton" 
+                                            Cursor="Hand"
                                             Background="{StaticResource Accent_Red}"
                                             Style="{StaticResource TagsListDeleteButtton_ButttonStyle}"
                                             Command="{Binding DataContext.DeleteTag_Command, RelativeSource={RelativeSource AncestorType=ListBox}}"   
@@ -154,6 +211,12 @@
                         <Trigger SourceName="Delete_Mode" Property="Opacity" Value="0">
                             <Setter TargetName="Delete_Mode" Property="Visibility" Value="Hidden"/>
                         </Trigger>
+
+
+                        <DataTrigger Binding="{Binding IsAddMode, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                            <Setter TargetName="AddMode" Property="Visibility" Value="Visible"/>
+                            <Setter TargetName="EditMode" Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
 
                     </ControlTemplate.Triggers>
 
