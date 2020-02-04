@@ -26,13 +26,22 @@
                 <ControlTemplate TargetType="Button">
                     <Grid Height="{TemplateBinding Height}" Width="{TemplateBinding Width}">
                         <Border Margin="1" CornerRadius="0 30 30 0" Cursor="Hand" Background="White"/>
-                        <Border x:Name="ElementBorder" CornerRadius="0 30 30 0" Cursor="Hand" Background="{TemplateBinding Background}">
+                        <Border x:Name="ElementBorder" CornerRadius="0 30 30 0"
+                                Cursor="Hand" Background="{TemplateBinding Background}">
                             <Grid>
-                                <Path Effect="{StaticResource ShadowDepth1}" Data="{StaticResource delete}" Fill="{StaticResource AccentText}" 
-                                          Height="{TemplateBinding FontSize}" Width="{TemplateBinding FontSize}"/>
-                                <Path Effect="{x:Null}" Data="{StaticResource delete}" Fill="{StaticResource AccentText}" 
-                                          Height="{TemplateBinding FontSize}" Width="{TemplateBinding FontSize}"/>
-                                <ContentPresenter VerticalAlignment="Center" Cursor="Hand" HorizontalAlignment="Center"/>
+                                <Path Effect="{StaticResource ShadowDepth1}" 
+                                      Data="{StaticResource delete}" 
+                                      Fill="{StaticResource AccentText}" 
+                                      Height="{TemplateBinding FontSize}" 
+                                      Width="{TemplateBinding FontSize}"/>
+                                <Path Effect="{x:Null}" 
+                                      Data="{StaticResource delete}" 
+                                      Fill="{StaticResource AccentText}" 
+                                      Height="{TemplateBinding FontSize}" 
+                                      Width="{TemplateBinding FontSize}"/>
+                                <ContentPresenter VerticalAlignment="Center" 
+                                                  Cursor="Hand" 
+                                                  HorizontalAlignment="Center"/>
                             </Grid>
                         </Border>
                     </Grid>
@@ -88,15 +97,20 @@
 
                                 <Border x:Name="DecoratorBorder" CornerRadius="1" Background="{TemplateBinding Background}"/>
 
-                                <Controls:ModernProgressRing x:Name="ModernProgressRingAnimation" Style="{StaticResource ChasingDotsProgressRingStyle}" 
-                                                     Foreground="{StaticResource AccentPrimary}" 
-                                                     IsActive="{Binding IsAnimationActive, UpdateSourceTrigger=PropertyChanged}" 
-                                                     Visibility="Hidden" VerticalAlignment="Center"/>
+                                <Controls:ModernProgressRing x:Name="ModernProgressRingAnimation" 
+                                                             Style="{StaticResource ChasingDotsProgressRingStyle}" 
+                                                             Foreground="{StaticResource AccentPrimary}" 
+                                                             IsActive="{Binding IsAnimationActive, UpdateSourceTrigger=PropertyChanged}" 
+                                                             Visibility="Hidden" 
+                                                             VerticalAlignment="Center"/>
                                 <Label x:Name="StartLabel" Foreground="{TemplateBinding Foreground}"
                                     HorizontalAlignment="Center" Content="Начать" FontSize="{TemplateBinding FontSize}"/>
 
 
-                                <ContentPresenter x:Name="ButtonContentPresenter" VerticalAlignment="Center" Visibility="Hidden" HorizontalAlignment="Stretch"/>
+                                <ContentPresenter x:Name="ButtonContentPresenter" 
+                                                  VerticalAlignment="Center" 
+                                                  Visibility="Hidden" 
+                                                  HorizontalAlignment="Stretch"/>
                             </Grid>
                         </Border>
                     </Grid>
@@ -154,15 +168,31 @@
             <Setter.Value>
                 <ControlTemplate TargetType="ToggleButton">
                     <Grid Height="{TemplateBinding Height}" Width="{TemplateBinding Width}">
-                        <Border x:Name="WhiteBorder" CornerRadius="3" Background="White"/>
-                        <Border x:Name="ElementBorder" CornerRadius="1" Cursor="Hand" Background="{TemplateBinding Background}">
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <Path Effect="{StaticResource ShadowDepth1}" Data="{StaticResource InvertOrder_None}" Fill="{TemplateBinding Foreground}" 
-                                          Height="18" Width="18" Stretch="Uniform"/>
-                                <Label Content="Обычный" FontSize="16" Foreground="{TemplateBinding Foreground}"/>
+                        <Border x:Name="WhiteBorder" 
+                                CornerRadius="3" 
+                                Background="White"/>
+                        <Border x:Name="ElementBorder" 
+                                CornerRadius="1" 
+                                Cursor="Hand" 
+                                Background="{TemplateBinding Background}">
+                            <StackPanel Orientation="Horizontal" 
+                                        HorizontalAlignment="Center">
+                                <Path Effect="{StaticResource ShadowDepth1}" 
+                                      Data="{StaticResource InvertOrder_None}" 
+                                      Fill="{TemplateBinding Foreground}" 
+                                      Height="18" 
+                                      Width="18" 
+                                      Stretch="Uniform"/>
+                                <Label Content="Обычный" 
+                                       FontSize="16" 
+                                       Foreground="{TemplateBinding Foreground}"/>
                             </StackPanel>
                         </Border>
-                        <Border x:Name="ElementBorderInverted" CornerRadius="1" Visibility="Hidden" Cursor="Hand" Background="{TemplateBinding Foreground}">
+                        <Border x:Name="ElementBorderInverted"
+                                CornerRadius="1" 
+                                Visibility="Hidden" 
+                                Cursor="Hand" 
+                                Background="{TemplateBinding Foreground}">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                 <Path Effect="{StaticResource ShadowDepth1}" Data="{StaticResource InvertOrder_True}" Fill="{TemplateBinding Background}" 
                                           Height="18" Width="18" Stretch="Uniform"/>
