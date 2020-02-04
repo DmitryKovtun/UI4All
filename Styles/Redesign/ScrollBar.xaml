@@ -10,7 +10,7 @@
         <Setter Property="IsTabStop" Value="False"/>
         <Setter Property="Background" Value="{DynamicResource AccentText}"/>
         <Setter Property="Focusable" Value="False"/>
-        <Setter Property="Margin" Value="0,4,0,4"/>
+        <Setter Property="Margin" Value="0 2 0 2"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Thumb}">
@@ -31,15 +31,15 @@
 
     <!--CustomUniversalScrollBar-->
 
-    <ControlTemplate x:Key="CustomUniversalScrollBar" TargetType="{x:Type ScrollBar}">
-        <Grid  x:Name="GridScrollBar">
+    <ControlTemplate x:Key="CustomUniversalScrollBar" 
+                     TargetType="{x:Type ScrollBar}">
+        <Grid x:Name="GridScrollBar">
             <Track Name="PART_Track"
                    Width="6"
                    HorizontalAlignment="Left"
                    IsDirectionReversed="True">
                 <Track.Thumb>
                     <Thumb Width="6" Style="{StaticResource ScrollBarThumbStyle}"/>
-
                 </Track.Thumb>
             </Track>
         </Grid>
@@ -59,6 +59,7 @@
     <!--CustomUniversalScrollBar-->
 
     <Style TargetType="{x:Type ScrollBar}">
+        <Setter Property="Margin" Value="4 0 -7 0"/>
         <Setter Property="Template" Value="{StaticResource CustomUniversalScrollBar}"/>
     </Style>
 
